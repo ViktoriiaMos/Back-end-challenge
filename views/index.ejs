@@ -1,0 +1,35 @@
+<%- include("./components/header")%>
+    <div class="container">
+        <h1 class="mb-4">Welcome to Facebook</h1>
+        <h5>Add a Post</h5>
+        <form action="/add-feed" method = "POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="type your name">
+          
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Message</label>
+              <input type="text" name="message" class="form-control" id="exampleInputPassword1" placeholder="type your message">
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+          </form>
+    
+
+          <% if (result.length> 0 ) {%>
+            <% result.forEach(element=> { %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= element.name %></h5>
+                        <p class="card-text mb-2"><%= element.message %></p>
+                        <p><%= element.createdAt.toLocaleDateString() %></p>
+              <a href=/feed/<%= element._id%> class="card-link">See more</a>
+            </div>
+          </div>
+          <% }); %>
+          <% } else { %>
+              there is no messages....
+  <% } %>
+
+    </div>
+    <%- include("./components/footer")%>
